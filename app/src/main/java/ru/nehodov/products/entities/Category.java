@@ -1,16 +1,19 @@
 package ru.nehodov.products.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
-public class Category{
+public class Category {
     private int id;
     private String title;
-    private int parent_id;
+    @SerializedName("parent_id")
+    private int parentId;
 
-    public Category(int id, String title, int parent_id) {
+    public Category(int id, String title, int parentId) {
         this.id = id;
         this.title = title;
-        this.parent_id = parent_id;
+        this.parentId = parentId;
     }
 
     public int getId() {
@@ -29,35 +32,39 @@ public class Category{
         this.title = title;
     }
 
-    public int getParent_id() {
-        return parent_id;
+    public int getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(int parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Category category = (Category) o;
-        return id == category.id &&
-                parent_id == category.parent_id &&
-                Objects.equals(title, category.title);
+        return id == category.id
+                && parentId == category.parentId
+                && Objects.equals(title, category.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, parent_id);
+        return Objects.hash(id, title, parentId);
     }
 
     @Override
     public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", parent_id=" + parent_id +
-                '}';
+        return "Category{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", parent_id=" + parentId
+                + '}';
     }
 }

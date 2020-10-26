@@ -3,10 +3,10 @@ package ru.nehodov.products.entities;
 import java.util.List;
 import java.util.Objects;
 
-public class Response {
+public class ApiResponse {
     private List<Product> data;
 
-    public Response(List<Product> data) {
+    public ApiResponse(List<Product> data) {
         this.data = data;
     }
 
@@ -20,10 +20,14 @@ public class Response {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Response response = (Response) o;
-        return Objects.equals(data, response.data);
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApiResponse apiResponse = (ApiResponse) o;
+        return Objects.equals(data, apiResponse.data);
     }
 
     @Override

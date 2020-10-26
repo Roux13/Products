@@ -1,24 +1,28 @@
 package ru.nehodov.products.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 import java.util.Objects;
 
 public class Product {
     private int id;
     private String title;
-    private String short_description;
-    private String image_url;
+    @SerializedName("short_description")
+    private String shortDescription;
+    @SerializedName("image_url")
+    private String imageUrl;
     private int amount;
     private double price;
     private String producer;
     private List<Category> categories;
 
-    public Product(int id, String title, String short_description, String image_url, int amount,
+    public Product(int id, String title, String shortDescription, String imageUrl, int amount,
                    double price, String producer, List<Category> categories) {
         this.id = id;
         this.title = title;
-        this.short_description = short_description;
-        this.image_url = image_url;
+        this.shortDescription = shortDescription;
+        this.imageUrl = imageUrl;
         this.amount = amount;
         this.price = price;
         this.producer = producer;
@@ -41,20 +45,20 @@ public class Product {
         this.title = title;
     }
 
-    public String getShort_description() {
-        return short_description;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setShort_description(String short_description) {
-        this.short_description = short_description;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
-    public String getImage_url() {
-        return image_url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage_url(String image_url) {
-        this.image_url = image_url;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public int getAmount() {
@@ -91,35 +95,40 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Product product = (Product) o;
-        return id == product.id &&
-                amount == product.amount &&
-                Double.compare(product.price, price) == 0 &&
-                Objects.equals(title, product.title) &&
-                Objects.equals(short_description, product.short_description) &&
-                Objects.equals(image_url, product.image_url) &&
-                Objects.equals(producer, product.producer) &&
-                Objects.equals(categories, product.categories);
+        return id == product.id
+                && amount == product.amount
+                && Double.compare(product.price, price) == 0
+                && Objects.equals(title, product.title)
+                && Objects.equals(shortDescription, product.shortDescription)
+                && Objects.equals(imageUrl, product.imageUrl)
+                && Objects.equals(producer, product.producer)
+                && Objects.equals(categories, product.categories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, short_description, image_url, amount, price, producer, categories);
+        return Objects.hash(id, title, shortDescription,
+                imageUrl, amount, price, producer, categories);
     }
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", short_description='" + short_description + '\'' +
-                ", image_url='" + image_url + '\'' +
-                ", amount=" + amount +
-                ", price=" + price +
-                ", producer='" + producer + '\'' +
-                ", categories=" + categories +
-                '}';
+        return "Product{"
+                + "id=" + id
+                + ", title='" + title + '\''
+                + ", short_description='" + shortDescription + '\''
+                + ", image_url='" + imageUrl + '\''
+                + ", amount=" + amount
+                + ", price=" + price
+                + ", producer='" + producer + '\''
+                + ", categories=" + categories
+                + '}';
     }
 }
